@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url
+from meds.forms import RegisterFormView, LoginFormView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^register/$', RegisterFormView.as_view()),
+    url(r'^login/$', LoginFormView.as_view()),
 ]
