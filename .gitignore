@@ -1,6 +1,5 @@
-.idea
 # Created by https://www.gitignore.io/api/django,python,pycharm
-
+.idea
 ### Django ###
 *.log
 *.pot
