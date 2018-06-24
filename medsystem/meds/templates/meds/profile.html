@@ -1,0 +1,9 @@
+{% extends 'meds/_base.html' %}
+
+{% block title %}
+    Заполните пожалуйста свой профиль
+{% endblock %}
+
+{% block content %}
+    {% include "meds/_form.html" with button_text="Сохранить" %}
+{% endblock %}

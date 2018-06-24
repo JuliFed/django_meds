@@ -1,0 +1,7 @@
+<ul id="accordion" class="accordion">
+    {% for cat in categories %}
+        <li>
+            <div class="link"><a href="/category/{{cat.pk}}"><i class="fa fa-medkit"></i>{{ cat.title }}</a> </div>
+        </li>
+    {% endfor %}
+</ul>

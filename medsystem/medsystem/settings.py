@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'meds.utils.current_user.CurrentUserMiddleware',
 ]
 
 ROOT_URLCONF = 'medsystem.urls'

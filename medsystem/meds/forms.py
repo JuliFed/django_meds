@@ -1,26 +1,27 @@
-from django.views.generic.edit import FormView
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
+from django import forms
+from .models import Advice, Profile
+from django.forms import widgets
 
 
-class RegisterFormView(FormView):
-    form_class = UserCreationForm
-    success_url = "/login/"
-    template_name = "meds/register.html"
-
-    def form_valid(self, form):
-        form.save()
-        return super(RegisterFormView, self).form_valid(form)
+class AdviceModelForm(forms.ModelForm):
+    class Meta:
+        model = Advice
+        fields = ['category', 'problem']
 
 
-class LoginFormView(FormView):
-    form_class = AuthenticationForm
-    template_name = "meds/login.html"
-    success_url = "/"
+class ProfileModelForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['email', 'sex', 'birth_date', 'first_name', 'last_name', 'education']
+        labels = {
+            'email': 'Email:',
+            'sex': 'Пол:',
+            'birth_date': 'Дата рождения:',
+            'first_name': 'Имя',
+            'last_name': 'Фамилия',
+            'education': 'Образование',
+        }
+        widgets = {
+            'birth_date': widgets.SelectDateWidget,
+        }
 
-    def form_valid(self, form):
-        self.user = form.get_user()
-        # Выполняем аутентификацию пользователя.
-        login(self.request, self.user)
-        return super(LoginFormView, self).form_valid(form)

@@ -1,0 +1,9 @@
+{% extends 'meds/_base.html' %}
+
+{% block title %}
+    Задать вопрос
+{% endblock %}
+
+{% block content %}
+    {% include "meds/_form.html" with button_text="Спросить" %}
+{% endblock %}

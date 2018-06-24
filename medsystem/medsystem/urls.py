@@ -16,10 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
-from meds.forms import RegisterFormView, LoginFormView
+from django.conf import settings
+from django.conf.urls.static import static
+from meds.views import RegisterFormView, LoginFormView, LogoutView, IndexView, AdviceCreateView, ProfileCreateView, ProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^register/$', RegisterFormView.as_view()),
-    url(r'^login/$', LoginFormView.as_view()),
-]
+    url(r'^register/$', RegisterFormView.as_view(), name='register'),
+    url(r'^login/$', LoginFormView.as_view(), name='login'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^category/(?P<pk>[0-9a-f\-]+)/$', IndexView.as_view()),
+    url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^advice/$', AdviceCreateView.as_view(), name='advice'),
+    url(r'^add_profile/$', ProfileCreateView.as_view()),
+    url(r'^profile/$', ProfileView.as_view(), name='profile'),
+
+
+] + static(settings.STATIC_URL, document_root='meds/static/')

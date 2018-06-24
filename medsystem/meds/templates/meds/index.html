@@ -1,0 +1,12 @@
+{% extends 'meds/_base.html' %}
+
+{% block title %}
+    MEDS - консультируйтесь с лучшими!
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <p> Welcome, {{ user.username }} </p>
+    {% else %}
+    {% endif %}
+{% endblock %}
