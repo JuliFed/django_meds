@@ -48,7 +48,10 @@ class IndexView(View):
                 return redirect('/add_profile')
         categories = Category.objects.all()
         for cat in categories:
-            print(cat.doctors)
+            doctors = cat.get_doctors
+            for doc in doctors:
+                print(doc.user.profile.last_name)
+            
         return render(request, 'meds/index.html', {
             "categories": categories
         })

@@ -26,11 +26,15 @@ class SprService(models.Model):
     def __str__(self):
         return self.title
 
-
+    
 class Category(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=250)
 
+    @property
+    def get_doctors(self):
+        return Doctor.objects.filter(category=self)
+    
     def __str__(self):
         return self.title
 

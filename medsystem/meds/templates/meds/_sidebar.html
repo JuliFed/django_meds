@@ -2,6 +2,11 @@
     {% for cat in categories %}
         <li>
             <div class="link"><a href="/category/{{cat.pk}}"><i class="fa fa-medkit"></i>{{ cat.title }}</a> </div>
+                <ul class="submenu">
+                    {% for doctor in cat.get_doctors %}
+                        <li><a href="/doctor/{{doctor.user.pk}}"> {{doctor.user.profile.first_name }} {{doctor.user.profile.last_name }} </a></li>
+                    {% endfor %}
+                </ul>
         </li>
     {% endfor %}
 </ul>
