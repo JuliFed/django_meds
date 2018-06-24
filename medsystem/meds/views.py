@@ -42,14 +42,13 @@ class IndexView(View):
     def get(self, request):
         
         if request.user.is_authenticated:
-            print(1)
             try:
                 profile = self.request.user.profile
-                print(profile)
             except Profile.DoesNotExist:
                 return redirect('/add_profile')
-            
         categories = Category.objects.all()
+        for cat in categories:
+            print(cat.doctors)
         return render(request, 'meds/index.html', {
             "categories": categories
         })

@@ -3,6 +3,7 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
+import meds.utils.current_user
 
 
 class Migration(migrations.Migration):
@@ -19,13 +20,17 @@ class Migration(migrations.Migration):
             name='Profile',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('email', models.EmailField(max_length=254)),
                 ('sex', models.CharField(choices=[('man', 'man'), ('woman', 'woman')], max_length=5)),
                 ('birth_date', models.DateField()),
                 ('first_name', models.CharField(max_length=20)),
                 ('last_name', models.CharField(max_length=20)),
                 ('education', models.CharField(blank=True, max_length=100)),
-                ('points', models.IntegerField()),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, related_name='profile', to=settings.AUTH_USER_MODEL)),
+                ('points', models.IntegerField(default=100)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT,
+                                              related_name='profile',
+                                              to=settings.AUTH_USER_MODEL,
+                                              default=meds.utils.current_user.get_current_user)),
             ],
         ),
     ]

@@ -12,7 +12,7 @@ def migrate_price_service(apps, schema_editor):
     service.objects.create(title='Хирургия доцент', price=35)
     service.objects.create(title='Терапевт', price=10)
     service.objects.create(title='Семейный врач', price=25)
-    service.objects.create(title='Кардиолог.', price=50)
+    service.objects.create(title='Кардиолог', price=50)
     
 
 

@@ -37,7 +37,6 @@ class Category(models.Model):
 
 class Doctor(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT, related_name='doctors')
-    profile = models.OneToOneField(Profile, on_delete=models.PROTECT, related_name='doctor_profile')
     service = models.ForeignKey(SprService, on_delete=models.PROTECT, related_name='spr')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='doctors')
 
